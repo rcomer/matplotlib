@@ -108,6 +108,7 @@ def _copy_docstring_and_deprecators(method, func=None):
 
 ## Global ##
 
+foo = 1
 
 # The state controlled by {,un}install_repl_displayhook().
 _ReplDisplayHook = Enum("_ReplDisplayHook", ["NONE", "PLAIN", "IPYTHON"])
