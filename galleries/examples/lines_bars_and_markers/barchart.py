@@ -32,7 +32,7 @@ for attribute, measurement in penguin_means.items():
     multiplier += 1
 
 # Add some text for labels, title and custom x-axis tick labels, etc.
-ax.set_ylabel('Length (mm)')
+ax.set_ylabel('Length (cm)')
 ax.set_title('Penguin attributes by species')
 ax.set_xticks(x + width, species)
 ax.legend(loc='upper left', ncols=3)
