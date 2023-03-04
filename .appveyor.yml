@@ -9,6 +9,14 @@ branches:
     - /auto-backport-.*/
     - /^v\d+\.\d+\.[\dx]+-doc$/
 
+skip_commits:
+  message: /\[ci doc\]/
+  files:
+    - 'doc/**'
+    - 'galleries/examples/**'
+    - 'galleries/plot_types/**'
+    - 'galleries/tutorials/**'
+
 clone_depth: 50
 
 image: Visual Studio 2017
