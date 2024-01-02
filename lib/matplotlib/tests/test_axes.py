@@ -1008,10 +1008,10 @@ def test_hexbin_log():
 @image_comparison(["hexbin_linear.png"], style="mpl20", remove_text=True)
 def test_hexbin_linear():
     # Issue #21165
-    np.random.seed(19680801)
+    rng = np.random.default_rng(seed=19680801)
     n = 100000
-    x = np.random.standard_normal(n)
-    y = 2.0 + 3.0 * x + 4.0 * np.random.standard_normal(n)
+    x = rng.standard_normal(n)
+    y = 2.0 + 3.0 * x + 4.0 * rng.standard_normal(n)
 
     fig, ax = plt.subplots()
     ax.hexbin(x, y, gridsize=(10, 5), marginals=True,
