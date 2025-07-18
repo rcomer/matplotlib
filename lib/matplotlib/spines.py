@@ -238,14 +238,20 @@ class Spine(mpatches.Patch):
         if self.spine_type == 'circle':
             return
 
+        low = high = None
         if self._bounds is not None:
             low, high = self._bounds
-        elif self.spine_type in ('left', 'right'):
-            low, high = self.axes.viewLim.intervaly
+
+
+        if self.spine_type in ('left', 'right'):
+            vlow, vhigh = self.axes.viewLim.intervaly
         elif self.spine_type in ('top', 'bottom'):
-            low, high = self.axes.viewLim.intervalx
+            vlow, vhigh = self.axes.viewLim.intervalx
         else:
             raise ValueError(f'unknown spine spine_type: {self.spine_type}')
+
+        low = low or vlow
+        high = high or vhigh
 
         if self._patch_type == 'arc':
             if self.spine_type in ('bottom', 'top'):
