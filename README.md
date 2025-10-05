@@ -29,7 +29,7 @@ formats and interactive environments across platforms. Matplotlib can be
 used in Python scripts, Python/IPython shells, web application servers,
 and various graphical user interface toolkits.
 
-## Install
+## Installing
 
 See the [install
 documentation](https://matplotlib.org/stable/users/installing/index.html),
