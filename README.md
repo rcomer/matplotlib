@@ -37,7 +37,7 @@ which is generated from `/doc/install/index.rst`
 
 ## Contribute
 
-You've discovered a bug or something else you want to change — excellent!
+You've discovered a bug or something else you want to change — excellent!!!!
 
 You've worked out a way to fix it — even better!
 
