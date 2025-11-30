@@ -11,6 +11,7 @@ import platform
 import re
 import sys
 from types import SimpleNamespace
+from unittest import mock
 
 import dateutil.tz
 
@@ -39,14 +40,13 @@ import matplotlib.pyplot as plt
 import matplotlib.text as mtext
 import matplotlib.ticker as mticker
 import matplotlib.transforms as mtransforms
-from matplotlib.backends.backend_agg import FigureCanvasAgg
 import mpl_toolkits.axisartist as AA  # type: ignore[import]
 from numpy.testing import (
     assert_allclose, assert_array_equal, assert_array_almost_equal)
 from matplotlib.testing.decorators import (
     image_comparison, check_figures_equal, remove_ticks_and_titles)
 from matplotlib.testing._markers import needs_usetex
-from unittest.mock import MagicMock
+
 # Note: Some test cases are run twice: once normally and once with labeled data
 #       These two must be defined in the same test function or need to have
 #       different baseline images to prevent race conditions when pytest runs
@@ -10023,7 +10023,6 @@ def test_pie_all_zeros():
 
 def test_animated_artists_not_drawn_by_default():
     fig, (ax1, ax2) = plt.subplots(ncols=2)
-    canvas = FigureCanvasAgg(fig)
 
     imdata = np.random.random((20, 20))
     lndata = imdata[0]
@@ -10031,10 +10030,9 @@ def test_animated_artists_not_drawn_by_default():
     im = ax1.imshow(imdata, animated=True)
     (ln,) = ax2.plot(lndata, animated=True)
 
-    im.draw = MagicMock(name="im.draw")
-    ln.draw = MagicMock(name="ln.draw")
+    with (mock.patch.object(im, "draw", name="im.draw") as mocked_im_draw,
+          mock.patch.object(ln, "draw", name="ln.draw") as mocked_ln_draw):
+        fig.draw_without_rendering()
 
-    canvas.draw()
-
-    im.draw.assert_not_called()
-    ln.draw.assert_not_called()
+    mocked_im_draw.assert_not_called()
+    mocked_ln_draw.assert_not_called()
