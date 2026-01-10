@@ -2407,15 +2407,9 @@ class LogLocator(Locator):
         # Use specialized logs if possible, as they can be more accurate; e.g.
         # log(.001) / log(10) = -2.999... (whether math.log or np.log) due to
         # floating point error.
-        if self._base == 10:
-            print('base 10')
-            return np.log10(x)
-        if self._base == 2:
-            print('base 2')
-            return np.log2(x)
-
-        print('no specific log')
-        return np.log(x) / np.log(self._base)
+        return (np.log10(x) if self._base == 10 else
+                np.log2(x) if self._base == 2 else
+                np.log(x) / np.log(self._base))
 
     def tick_values(self, vmin, vmax):
         n_request = (
@@ -2439,7 +2433,6 @@ class LogLocator(Locator):
         efmin, efmax = self._log_b([vmin, vmax])
         emin = math.ceil(efmin)
         emax = math.floor(efmax)
-        print(f'{efmin=}, {efmax=}, {emin=}, {emax=}')
         n_avail = emax - emin + 1  # Total number of decade ticks available.
 
         if isinstance(self._subs, str):
