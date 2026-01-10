@@ -32,7 +32,6 @@ jobs:
     if: >-
       github.event_name == 'workflow_dispatch' ||
       (
-        github.repository == 'matplotlib/matplotlib' &&
         !contains(github.event.head_commit.message, '[ci skip]') &&
         !contains(github.event.head_commit.message, '[skip ci]') &&
         !contains(github.event.head_commit.message, '[skip github]') &&
@@ -53,40 +52,6 @@ jobs:
             extra-requirements: '-c requirements/testing/minver.txt'
             delete-font-cache: true
             # https://github.com/matplotlib/matplotlib/issues/29844
-            pygobject-ver: '<3.52.0'
-          - os: ubuntu-22.04
-            python-version: '3.11'
-            CFLAGS: "-fno-lto"  # Ensure that disabling LTO works.
-            extra-requirements: '-r requirements/testing/extra.txt'
-            # https://github.com/matplotlib/matplotlib/issues/29844
-            pygobject-ver: '<3.52.0'
-          - name-suffix: "(Extra TeX packages)"
-            os: ubuntu-22.04
-            python-version: '3.13'
-            extra-packages: 'texlive-fonts-extra texlive-lang-cyrillic'
-            # https://github.com/matplotlib/matplotlib/issues/29844
-            pygobject-ver: '<3.52.0'
-          - name-suffix: "Free-threaded"
-            os: ubuntu-22.04
-            python-version: '3.13t'
-            # https://github.com/matplotlib/matplotlib/issues/29844
-            pygobject-ver: '<3.52.0'
-          - os: ubuntu-24.04
-            python-version: '3.12'
-          - os: ubuntu-24.04-arm
-            python-version: '3.12'
-          - os: macos-14  # This runner is on M1 (arm64) chips.
-            python-version: '3.11'
-            # https://github.com/matplotlib/matplotlib/issues/29732
-            pygobject-ver: '<3.52.0'
-          - os: macos-14  # This runner is on M1 (arm64) chips.
-            python-version: '3.12'
-            # https://github.com/matplotlib/matplotlib/issues/29732
-            pygobject-ver: '<3.52.0'
-          - os: macos-15  # This runner is on M1 (arm64) chips.
-            python-version: '3.13'
-            # https://github.com/matplotlib/matplotlib/issues/29732
-            pygobject-ver: '<3.52.0'
 
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
