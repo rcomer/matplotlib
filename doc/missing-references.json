@@ -20,12 +20,6 @@
       "lib/matplotlib/backends/backend_tkagg.py:docstring of matplotlib.backends.backend_tkagg.FigureCanvasTkAgg:1",
       "lib/matplotlib/backends/backend_tkcairo.py:docstring of matplotlib.backends.backend_tkcairo.FigureCanvasTkCairo:1"
     ],
-    "matplotlib.image._ImageBase": [
-      "doc/api/artist_api.rst:203",
-      "lib/matplotlib/image.py:docstring of matplotlib.image.AxesImage:1",
-      "lib/matplotlib/image.py:docstring of matplotlib.image.BboxImage:1",
-      "lib/matplotlib/image.py:docstring of matplotlib.image.FigureImage:1"
-    ],
     "matplotlib.patches.ArrowStyle._Base": [
       "lib/matplotlib/patches.py:docstring of matplotlib.patches.ArrowStyle.Fancy:1",
       "lib/matplotlib/patches.py:docstring of matplotlib.patches.ArrowStyle.Simple:1",
@@ -68,11 +62,6 @@
       "lib/matplotlib/projections/geo.py:docstring of matplotlib.projections.geo.LambertAxes.LambertTransform:1",
       "lib/matplotlib/projections/geo.py:docstring of matplotlib.projections.geo.MollweideAxes.InvertedMollweideTransform:1",
       "lib/matplotlib/projections/geo.py:docstring of matplotlib.projections.geo.MollweideAxes.MollweideTransform:1"
-    ],
-    "matplotlib.text._AnnotationBase": [
-      "doc/api/artist_api.rst:203",
-      "lib/matplotlib/offsetbox.py:docstring of matplotlib.offsetbox.AnnotationBbox:1",
-      "lib/matplotlib/text.py:docstring of matplotlib.text.Annotation:1"
     ],
     "matplotlib.transforms._BlendedMixin": [
       "lib/matplotlib/transforms.py:docstring of matplotlib.transforms.BlendedAffine2D:1",
