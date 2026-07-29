@@ -271,6 +271,23 @@ def test_markevery_figure_line_unsupported_relsize():
         fig.canvas.draw()
 
 
+def test_markevery_extreme_zoom():
+    """
+    Smoke test that float markevery and extreme zoom does not create array
+    memory error.
+    """
+    x = np.linspace(0, 10, 200)
+    y = np.sin(x)
+
+    fig, ax = plt.subplots()
+    ax.plot(x, y, marker='o', markevery=0.05)
+
+    # Simulating an extreme zoom
+    ax.set_xlim(5.000000, 5.000001)
+
+    fig.draw_without_rendering()
+
+
 def test_marker_as_markerstyle():
     fig, ax = plt.subplots()
     line, = ax.plot([2, 4, 3], marker=MarkerStyle("D"))

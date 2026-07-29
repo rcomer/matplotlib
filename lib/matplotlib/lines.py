@@ -199,10 +199,17 @@ def _mark_every_path(markevery, tpath, affine, ax):
             (x0, y0), (x1, y1) = ax.transAxes.transform([[0, 0], [1, 1]])
             scale = np.hypot(x1 - x0, y1 - y0)
             marker_delta = np.arange(start * scale, delta[-1], step * scale)
+
+            # marker_delta can get very large when zooming.  We will only place
+            # markers on actual vertices, so can discard any theoretical points
+            # that are further than another theoretical point from an actual point.
+            inds = np.searchsorted(marker_delta[:-1], delta)
+            marker_delta = marker_delta[np.union1d(inds - 1, inds)]
+
             # find closest actual data point that is closest to
             # the theoretical distance along the path:
-            inds = np.abs(delta[np.newaxis, :] - marker_delta[:, np.newaxis])
-            inds = inds.argmin(axis=1)
+            distances = np.abs(delta[np.newaxis, :] - marker_delta[:, np.newaxis])
+            inds = distances.argmin(axis=1)
             inds = np.unique(inds)
             # return, we are done here
             return Path(fverts[inds], _slice_or_none(codes, inds))
