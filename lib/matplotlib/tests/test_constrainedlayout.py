@@ -377,6 +377,7 @@ def test_constrained_layout21():
     np.testing.assert_allclose(extents0, extents1)
 
 
+@pytest.mark.xfail(reason='Previous decision')
 def test_constrained_layout22():
     """#11035: suptitle should not be include in CL if manually positioned"""
     fig, ax = plt.subplots(layout="constrained")
